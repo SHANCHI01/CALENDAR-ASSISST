@@ -1,0 +1,180 @@
+{
+  "name": "MCP CLIENT",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b2729c58-cf35-4203-9081-29f8c223ce21",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "78bdfa9e-9558-4830-9f95-bf495f37cb8e"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "db1e39a7-51db-4323-8cf3-31473343b8de",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "843179b9-9c13-4c81-9824-e8fd5a50b1f0",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        288,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://shanchita.app.n8n.cloud/mcp/892b0359-57ec-408c-a1b7-9a3c5109f72c",
+        "options": {}
+      },
+      "id": "bad3650f-d96e-44d8-8157-ebe2762d7169",
+      "name": "Own MCP Client",
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.4,
+      "position": [
+        656,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://api.githubcopilot.com/mcp/",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "id": "71bc28b1-a9ad-46b0-8351-54f0b770e2b9",
+      "name": "Github MCP Client1",
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.4,
+      "position": [
+        496,
+        240
+      ],
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "48LkaK9jhp79eViv",
+          "name": "Bearer Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        208
+      ],
+      "id": "69bce4a4-4896-43ea-b9db-5b97fc0b30b9",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Own MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github MCP Client1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "26d932bf-34cf-4cd4-a9b6-792b27e83169",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "260d6a03d2c24a9d3d07534d22670b5b55c399f3a315aa8b0ecac978c7069ed1"
+  },
+  "nodeGroups": [],
+  "id": "pvxZRAhc8yeNHLZY",
+  "tags": []
+}

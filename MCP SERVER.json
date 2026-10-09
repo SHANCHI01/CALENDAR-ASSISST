@@ -1,0 +1,110 @@
+{
+  "name": "MCP SERVER",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "892b0359-57ec-408c-a1b7-9a3c5109f72c"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "051acd93-904c-4c8e-9699-3e8afeb5b57e",
+      "name": "MCP Server Trigger",
+      "webhookId": "892b0359-57ec-408c-a1b7-9a3c5109f72c"
+    },
+    {
+      "parameters": {
+        "sendTo": "shanchicool96@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        16,
+        192
+      ],
+      "id": "6429833e-d525-4e0a-afd7-2ab5a5815bcb",
+      "name": "Send a message in Gmail",
+      "webhookId": "8f49d550-e0fd-442d-8088-ad0dd7ae5c62",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "oM5gXJs4032ifyIv",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "1yDS_tn5a-iYuhA2i1eVZkoNl7Imob9piUPFYs5plAzo",
+          "mode": "list",
+          "cachedResultName": "Github repositories",
+          "cachedResultUrl": "https://docs.google.com/document/d/1yDS_tn5a-iYuhA2i1eVZkoNl7Imob9piUPFYs5plAzo/edit?usp=drivesdk"
+        },
+        "changeFileContent": true,
+        "inputDataFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Input_Data_Field_Name', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        272,
+        192
+      ],
+      "id": "2df112b3-c6f4-4508-8fc1-c5105771580a",
+      "name": "Update file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gdgdY3owc6pJN2ww",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "4c21a830-6a8d-45e3-a58a-dba5e00cc015",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "260d6a03d2c24a9d3d07534d22670b5b55c399f3a315aa8b0ecac978c7069ed1"
+  },
+  "nodeGroups": [],
+  "id": "N8I5eLvt12uNf5FY",
+  "tags": []
+}
